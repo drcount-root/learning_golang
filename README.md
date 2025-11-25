@@ -1,10 +1,13 @@
-# learning_golang
+# Process of setup & execution
 
-`go run app.go`
+## To create a go module
 
-`go mod init example.com/first-app`
+`go mod init example/hello`
 
-`go build`
+## To install modules
 
+`go mod tidy`
 
-To run the build `./first-app`
+## To run
+
+`go run .`
