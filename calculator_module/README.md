@@ -11,3 +11,9 @@
 ## To run
 
 `go run .`
+
+go run main.go
+
+go build main.go
+
+./main
