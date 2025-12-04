@@ -1,11 +1,26 @@
 package main
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+	"os"
+	"strconv"
+)
+
+const fileToOperateFrom = "balance.txt"
 
 func main() {
 	fmt.Println("Welcome to Go Bank!")
 
-	accountBalance := 1000.0
+	accountBalance, err := readBalanceFromFile()
+
+	if err != nil {
+		fmt.Println("⚠️ ERROR ⚠️")
+		fmt.Println(err)
+		fmt.Println("--------------------------------")
+		// returns with a message
+		panic("Can't continue sorry!")
+	}
 
 	for {
 		fmt.Println("\nWhat do you want to do?")
@@ -30,6 +45,7 @@ func main() {
 				continue
 			}
 			accountBalance += amount
+			writeBalanceToFile(accountBalance)
 			fmt.Printf("You have deposited $%.2f & current balance is $%.2f\n", amount, accountBalance)
 		case 3:
 			fmt.Println("Enter the amount to withdraw: ")
@@ -46,6 +62,7 @@ func main() {
 			}
 
 			accountBalance -= amount
+			writeBalanceToFile(accountBalance)
 			fmt.Printf("You have withdrawn $%.2f & current balance is $%.2f\n", amount, accountBalance)
 		case 4:
 			fmt.Println("Goodbye!")
@@ -55,5 +72,25 @@ func main() {
 			fmt.Println("Invalid choice")
 		}
 	}
+}
 
+func readBalanceFromFile() (float64, error) {
+	data, err := os.ReadFile(fileToOperateFrom)
+	if err != nil {
+		return 1000, errors.New("failed to find balance file")
+	}
+	balanceText := string(data)
+	balance, err := strconv.ParseFloat(balanceText, 64)
+	if err != nil {
+		return 1000, errors.New("failed to find balance file")
+	}
+
+	// returning nil means we have no error
+	return balance, nil
+}
+
+func writeBalanceToFile(balance float64) {
+	// Sprint formats using the default formats for its operands and returns the resulting string
+	balanceText := fmt.Sprint(balance)
+	os.WriteFile(fileToOperateFrom, []byte(balanceText), 0644)
 }
