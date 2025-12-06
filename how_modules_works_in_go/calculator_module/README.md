@@ -17,3 +17,7 @@ go run main.go
 go build main.go
 
 ./main
+
+---
+
+In go package name & folder name should be same
