@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	writetofile "example.com/structs/write_to_file"
+	"example.com/structs/write_to_file"
 )
 
 type User struct {
