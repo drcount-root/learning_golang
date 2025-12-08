@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"example.com/structs/write_to_file"
+	writetofile "example.com/structs/write_to_file"
 )
 
 type User struct {
@@ -12,6 +12,18 @@ type User struct {
 	lastName  string
 	birthdate string
 	createdAt time.Time
+}
+
+// To attach a method to a struct, we define a function with a receiver argument
+func (u *User) outputData(data string) {
+	fmt.Println("This is from outputData method of User struct", data)
+	fmt.Printf("User Data: %s %s, born on %s, created at %v\n",
+		u.firstName, u.lastName, u.birthdate, u.createdAt)
+}
+
+func (u *User) clearUserFirstName() {
+	// if we try to do this without a pointer receiver, it will not modify the original struct as it woul then deal with the copy of the struct
+	u.firstName = ""
 }
 
 func main() {
@@ -52,12 +64,19 @@ func main() {
 	fmt.Println(newUser)
 	fmt.Println(newUser2)
 
+	saveUserData(&newUser)
+
 	fmt.Println(firstName, lastName, birthdate)
 
 	dataToWrite := fmt.Sprintf("First Name: %s\tLast Name: %s\tBirthdate: %s\tCreated At: %v",
 		newUser.firstName, newUser.lastName, newUser.birthdate, newUser.createdAt)
 
 	writetofile.WriteUserDataToFile("users.txt", dataToWrite)
+
+	newUser.outputData("hi")
+
+	newUser.clearUserFirstName()
+	newUser.outputData("after clearing first name")
 }
 
 func getUserData(promptText string) string {
@@ -65,4 +84,15 @@ func getUserData(promptText string) string {
 	var value string
 	fmt.Scan(&value)
 	return value
+}
+
+func saveUserData(user *User) {
+	fmt.Printf("user pointer: %v\n", user)
+	// Saving user data from the user pointer address
+	fmt.Printf("Saving user data for: %v\n", *user)
+
+	// So noramally we need to dereference the pointer to access the fields
+	fmt.Printf("User First Name: %s\n", (*user).firstName)
+	// But Go allows us to access struct fields directly using the pointer
+	fmt.Printf("User Last Name: %s\n", user.lastName)
 }
