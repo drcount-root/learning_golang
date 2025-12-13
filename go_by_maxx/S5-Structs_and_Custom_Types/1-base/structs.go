@@ -77,6 +77,10 @@ func main() {
 
 	newUser.clearUserFirstName()
 	newUser.outputData("after clearing first name")
+
+	newUser.updateUserLing("motiwala")
+
+	fmt.Printf("Lastly updated user %v", newUser);
 }
 
 func getUserData(promptText string) string {
@@ -95,4 +99,8 @@ func saveUserData(user *User) {
 	fmt.Printf("User First Name: %s\n", (*user).firstName)
 	// But Go allows us to access struct fields directly using the pointer
 	fmt.Printf("User Last Name: %s\n", user.lastName)
+}
+
+func (u *User) updateUserLing(name string) {
+	u.lastName = name
 }
