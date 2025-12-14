@@ -1,9 +1,13 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"os"
+	"strings"
 	"time"
 
+	"example.com/constructor_functions/product"
 	"example.com/constructor_functions/user"
 )
 
@@ -58,7 +62,7 @@ func main() {
 	// 	CreatedAt: time.Now(),
 	// }
 
-	newAppUser := user.DifferentUserWithExportableFields{
+	newAppUser := user.UserWithExportableFields{
 		FirstName: "ABC",
 		LastName:  "XYZ",
 		Age:       25,
@@ -66,4 +70,33 @@ func main() {
 	}
 
 	fmt.Printf("newAppUser: %v\n", newAppUser)
+
+	// Product struct and constructor function usage
+
+	reader := bufio.NewReader(os.Stdin)
+
+	fmt.Println("\nEnter product name:")
+	productName, _ := reader.ReadString('\n')
+	productName = strings.TrimSpace(productName)
+
+	fmt.Println("Enter product description:")
+	productDescription, _ := reader.ReadString('\n')
+	productDescription = strings.TrimSpace(productDescription)
+
+	fmt.Println("Enter original price :")
+	var originalPrice float64
+	fmt.Scanln(&originalPrice)
+
+	fmt.Println("Enter discounted price :")
+	var discountedPrice float64
+	fmt.Scanln(&discountedPrice)
+
+	product1, err := product.NewProduct(productName, productDescription, originalPrice, discountedPrice)
+
+	if err != nil {
+		fmt.Printf("Error creating product: %v\n", err)
+		return
+	}
+
+	fmt.Printf("product1: %v\n", product1)
 }
