@@ -91,7 +91,7 @@ func main() {
 	var discountedPrice float64
 	fmt.Scanln(&discountedPrice)
 
-	product1, err := product.NewProduct(productName, productDescription, originalPrice, discountedPrice)
+	product1, err := product.New(productName, productDescription, originalPrice, discountedPrice)
 
 	if err != nil {
 		fmt.Printf("Error creating product: %v\n", err)
@@ -100,7 +100,7 @@ func main() {
 
 	fmt.Printf("product1: %v\n", product1)
 
-	
+
 	fmt.Println("\nEnter product id to update :")
 	var productId int
 	fmt.Scanln(&productId)

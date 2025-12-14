@@ -16,7 +16,7 @@ type Product struct {
 	createdAt       time.Time
 }
 
-func NewProduct(name, description string, originalPrice, discountedPrice float64) (*Product, error) {
+func New(name, description string, originalPrice, discountedPrice float64) (*Product, error) {
 	if name == "" || description == "" || originalPrice < 0 || discountedPrice < 0 || discountedPrice > originalPrice {
 		return nil, errors.New("invalid input data for product")
 	}
