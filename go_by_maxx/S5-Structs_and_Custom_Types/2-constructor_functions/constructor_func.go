@@ -99,4 +99,10 @@ func main() {
 	}
 
 	fmt.Printf("product1: %v\n", product1)
+
+	
+	fmt.Println("\nEnter product id to update :")
+	var productId int
+	fmt.Scanln(&productId)
+	product1.UpdateProductDetails(productId, "Updated "+productName, "Updated "+productDescription, originalPrice+10, discountedPrice+5)
 }

@@ -2,6 +2,7 @@ package product
 
 import (
 	"errors"
+	"fmt"
 	"math/rand"
 	"time"
 )
@@ -31,18 +32,23 @@ func NewProduct(name, description string, originalPrice, discountedPrice float64
 }
 
 func (p *Product) UpdateProductDetails(id int, name, description string, originalPrice, discountedPrice float64) error {
-	if name == "" || description == "" || originalPrice < 0 || discountedPrice < 0 || discountedPrice > originalPrice {
+	// if id == -1 means if no id is provided
+	if id == -1 || id == 0 || name == "" || description == "" || originalPrice < 0 || discountedPrice < 0 || discountedPrice > originalPrice {
 		return errors.New("invalid input data for product")
 	}
 
 	if p.id != id {
-		return errors.New("product ID mismatch")
+		// fmt.Printf("\nProduct ID mismatch: %v != %v\n", p.id, id)
+		// return errors.New("product ID mismatch")
+		panic("product Id mismatch")
 	}
 
 	p.name = name
 	p.description = description
 	p.originalPrice = originalPrice
 	p.discountedPrice = discountedPrice
+
+	fmt.Printf("\nUpdated product1: %v\n", p)
 
 	return nil
 }
