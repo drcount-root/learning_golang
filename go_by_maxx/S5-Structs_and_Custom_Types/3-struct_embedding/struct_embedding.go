@@ -35,5 +35,8 @@ func main() {
 
 	admin.User.UpdateUserDetails("Subham Sahu", 27)
 
+	// as user is embedded in admin, we can directly access the user methods
+	admin.UpdateUserDetails("Subham Sahu", 27)
+
 	fmt.Printf("\nAdmin after updating user details: %v\n", admin)
 }
