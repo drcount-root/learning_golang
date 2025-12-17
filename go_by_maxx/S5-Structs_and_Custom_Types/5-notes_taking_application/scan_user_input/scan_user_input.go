@@ -8,7 +8,7 @@ import (
 )
 
 func ScanUserInput(input string) string {
-	fmt.Println("\nEnter data :")
+	fmt.Println(input)
 	// var userInput string
 	// fmt.Scanln(&userInput)
 

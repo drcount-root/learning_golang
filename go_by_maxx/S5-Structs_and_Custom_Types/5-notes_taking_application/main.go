@@ -9,7 +9,7 @@ import (
 
 func getNoteData() (string, string) {
 	title := scan_user_input.ScanUserInput("Enter note title:")
-	content := scan_user_input.ScanUserInput("Enter note content:")
+	content := scan_user_input.ScanUserInput("\nEnter note content:")
 
 	return title, content
 }
@@ -25,4 +25,13 @@ func main() {
 	}
 
 	userNote.Display()
+
+	err = userNote.Save()
+
+	if err != nil {
+		fmt.Println("Error saving note:", err)
+		return
+	}
+
+	fmt.Println("Note saved successfully!")
 }
