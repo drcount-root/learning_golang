@@ -8,6 +8,22 @@ import (
 	"example.com/notes_taking_application_with_todos/todo"
 )
 
+type saver interface {
+	Save() error
+}
+
+type displayer interface {
+	Display()
+}
+
+type outputtable interface {
+	saver
+	displayer
+}
+
+// suppose we want to print some data which we are not sure about its type
+type anyTypeNotSure interface{}
+
 func getNoteData() (string, string) {
 	title := scan_user_input.ScanUserInput("Enter note title:")
 	content := scan_user_input.ScanUserInput("\nEnter note content:")
@@ -69,19 +85,11 @@ func main() {
 	if err != nil {
 		return
 	}
-}
 
-type saver interface {
-	Save() error
-}
-
-type displayer interface {
-	Display()
-}
-
-type outputtable interface {
-	saver
-	displayer
+	printAnyTypeData("This is a string data")
+	printAnyTypeData(42)
+	printAnyTypeData(3.14)
+	printAnyTypeData([]string{"apple", "banana", "cherry"})
 }
 
 // We can use saver interface to save both Todo and Note types as both structs are implementing the Save method.
@@ -101,4 +109,9 @@ func saveData(data saver) error {
 func outputData(data outputtable) error {
 	data.Display()
 	return saveData(data)
+}
+
+// or we can use func printAnyTypeData(data any) { ... }
+func printAnyTypeData(data anyTypeNotSure) {
+	fmt.Println(data)
 }
