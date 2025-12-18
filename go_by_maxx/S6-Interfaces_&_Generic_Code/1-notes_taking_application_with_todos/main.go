@@ -113,14 +113,36 @@ func outputData(data outputtable) error {
 
 // or we can use func printAnyTypeData(data any) { ... }
 func printAnyTypeData(data anyTypeNotSure) {
-	switch data.(type) {
-	case int:
-		fmt.Printf("Integer data: %d\n", data)
-	case float64:
-		fmt.Printf("Float data: %f\n", data)
-	case string:
-		fmt.Printf("String data: %s\n", data)
-	default:
-		fmt.Println("Unhandled data type")
+
+	dataInt, ok := data.(int)
+
+	if ok {
+		fmt.Printf("Integer data: %d\n", dataInt)
+		return
 	}
+
+	dataFloat, ok := data.(float64)
+
+	if ok {
+		fmt.Printf("Float data: %f\n", dataFloat)
+		return
+	}
+
+	dataString, ok := data.(string)
+
+	if ok {
+		fmt.Printf("String data: %s\n", dataString)
+		return
+	}
+
+	// switch data.(type) {
+	// case int:
+	// 	fmt.Printf("Integer data: %d\n", data)
+	// case float64:
+	// 	fmt.Printf("Float data: %f\n", data)
+	// case string:
+	// 	fmt.Printf("String data: %s\n", data)
+	// default:
+	// 	fmt.Println("Unhandled data type")
+	// }
 }
