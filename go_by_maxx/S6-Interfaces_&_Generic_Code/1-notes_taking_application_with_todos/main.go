@@ -32,7 +32,7 @@ func main() {
 		return
 	}
 
-	todo.Display()
+	// todo.Display()
 
 	// err = todo.Save()
 
@@ -42,13 +42,16 @@ func main() {
 	// }
 
 	// fmt.Println("Todo saved successfully!")
-	err = saveData(todo)
+
+	// err = saveData(todo)
+
+	err = outputData(todo)
 
 	if err != nil {
 		return
 	}
 
-	userNote.Display()
+	// userNote.Display()
 
 	// err = userNote.Save()
 
@@ -58,7 +61,10 @@ func main() {
 	// }
 
 	// fmt.Println("Note saved successfully!")
-	err = saveData(userNote)
+
+	// err = saveData(userNote)
+
+	err = outputData(userNote)
 
 	if err != nil {
 		return
@@ -67,6 +73,15 @@ func main() {
 
 type saver interface {
 	Save() error
+}
+
+type displayer interface {
+	Display()
+}
+
+type outputtable interface {
+	saver
+	displayer
 }
 
 // We can use saver interface to save both Todo and Note types as both structs are implementing the Save method.
@@ -81,4 +96,9 @@ func saveData(data saver) error {
 	fmt.Println("Data saved successfully!")
 
 	return nil
+}
+
+func outputData(data outputtable) error {
+	data.Display()
+	return saveData(data)
 }
