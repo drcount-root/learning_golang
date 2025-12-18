@@ -86,10 +86,10 @@ func main() {
 		return
 	}
 
-	printAnyTypeData("This is a string data")
-	printAnyTypeData(42)
-	printAnyTypeData(3.14)
-	printAnyTypeData([]string{"apple", "banana", "cherry"})
+	printAnyTypeData("This is a string data")               // String data: This is a string data
+	printAnyTypeData(42)                                    // Integer data: 42
+	printAnyTypeData(3.14)                                  // Float data: 3.140000
+	printAnyTypeData([]string{"apple", "banana", "cherry"}) // Unhandled data type
 }
 
 // We can use saver interface to save both Todo and Note types as both structs are implementing the Save method.
@@ -113,5 +113,14 @@ func outputData(data outputtable) error {
 
 // or we can use func printAnyTypeData(data any) { ... }
 func printAnyTypeData(data anyTypeNotSure) {
-	fmt.Println(data)
+	switch data.(type) {
+	case int:
+		fmt.Printf("Integer data: %d\n", data)
+	case float64:
+		fmt.Printf("Float data: %f\n", data)
+	case string:
+		fmt.Printf("String data: %s\n", data)
+	default:
+		fmt.Println("Unhandled data type")
+	}
 }
