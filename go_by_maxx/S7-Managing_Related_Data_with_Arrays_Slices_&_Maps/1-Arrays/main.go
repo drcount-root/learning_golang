@@ -48,4 +48,18 @@ func main() {
 	// capacity of a slice basically follows this equation:
 	// cap(array[a:b]) = len(array) - a
 	// cap(namesSlice1) = len(names) - 2 = 7 - 2 = 5
+
+	fmt.Printf("\nLength of namesSlice3 is %v & capacity of namesSlice3 is %v\n", len(namesSlice3), cap(namesSlice3))
+	// Length of namesSlice3 is 4 & capacity of namesSlice3 is 4
+	// Why is that ? Because slices have variable length and capacity equal to how many elements can this slice grow to before it runs out of the underlying array.
+	// capacity of a slice basically follows this equation:
+	// cap(array[a:b]) = len(array) - a
+	// cap(namesSlice3) = len(names) - 3 = 7 - 3 = 4
+
+	fmt.Printf("\nLength of namesSlice2 is %v & capacity of namesSlice2 is %v\n", len(namesSlice2), cap(namesSlice2))
+	// Length of namesSlice2 is 4 & capacity of namesSlice2 is 7
+	// Why is that ? Because slices have variable length and capacity equal to how many elements can this slice grow to before it runs out of the underlying array.
+	// capacity of a slice basically follows this equation:
+	// cap(array[a:b]) = len(array) - a
+	// cap(namesSlice2) = len(names) - 0 = 7 - 0 = 7
 }
