@@ -9,6 +9,7 @@ type product struct {
 }
 
 func main() {
+	// dynamicListOfProducts slice
 	dynamicListOfProducts := []product{
 		{
 			id:    1,
