@@ -19,5 +19,6 @@ func main() {
 
 	// to remove an element from the array go don't have any built-in method
 	afterRemovalUpdatedPrices := append(updatedPrices[:1], updatedPrices[3:]...)
+	// by doing updatedPrices[3:]... we are unpacking all the values from updatedPrices[3:]
 	fmt.Printf("\nafterRemovalUpdatedPrices => %v\n", afterRemovalUpdatedPrices) // [1 7 8 10 12 15]
 }
