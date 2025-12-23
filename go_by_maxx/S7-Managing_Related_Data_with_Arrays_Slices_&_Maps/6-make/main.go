@@ -48,4 +48,14 @@ func main() {
 	courseRatings["JavaScript"] = 9.5
 	courseRatings["Java"] = 8.7
 	fmt.Println(courseRatings) // map[Go:9.5 Java:8.7 JavaScript:9.5 Python:9]
+
+	type floatMap map [string] float64
+
+	newCourseRatings := make(floatMap, 3)
+
+	newCourseRatings["Go"] = 9.5
+	newCourseRatings["Python"] = 9.0
+	newCourseRatings["JavaScript"] = 9.5
+	newCourseRatings["Java"] = 8.7
+	fmt.Println(newCourseRatings)
 }

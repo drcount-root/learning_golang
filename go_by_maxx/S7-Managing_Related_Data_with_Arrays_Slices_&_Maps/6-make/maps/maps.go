@@ -1,5 +1,0 @@
-package maps
-
-func Maps() {
-	
-}
