@@ -12,7 +12,7 @@ func main() {
 		fmt.Printf("Index %v : Value %v\n", i, v)
 	}
 
-	userNames2 := make([]string, 3)
+	userNames2 := make([]string, 3) // Create a slice of length 3 backed by an underlying array of length 3.
 	// userNames2[0] = "Chris"
 	userNames2[1] = "David"
 	userNames2[2] = "Kate"

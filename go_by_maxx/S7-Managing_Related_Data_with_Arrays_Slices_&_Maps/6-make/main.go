@@ -13,7 +13,7 @@ func main() {
 	// make solves the problem of having to specify the size of an array or slice when it is declared. It allows us to create a slice of a certain size without having to populate it with values.
 
 	// type, preintended length, capacity
-	userNames2 := make([]string, 3)
+	userNames2 := make([]string, 3) // Create a slice of length 3 backed by an underlying array of length 3.
 	userNames2[0] = "Chris"
 	userNames2[1] = "David"
 	userNames2[2] = "Kate"
