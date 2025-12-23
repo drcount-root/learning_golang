@@ -1,6 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+
+	"example.com/functions/anonymous_func"
+)
 
 func main() {
 	sliceOfInts := make([]int, 6)
@@ -24,6 +28,9 @@ func main() {
 	check2Slice := []int{0, 9, 5}
 	check2 := transformItFunc(&check2Slice, getTransformarFunc(&check2Slice))
 	fmt.Println(check2) // [0 27 15]
+
+	anonymousFuncResult := anonymous_func.AnonymousFunc()
+	fmt.Println(anonymousFuncResult)
 }
 
 type transformType func(*int) int
