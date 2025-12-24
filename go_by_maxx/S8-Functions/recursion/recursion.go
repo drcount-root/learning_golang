@@ -27,7 +27,9 @@ func RecursiveFibonacciFunc(n *int) []int {
 	prevN := *n - 1
 	fibSlice := RecursiveFibonacciFunc(&prevN)
 
-	nextFib := fibSlice[len(fibSlice)-1] + fibSlice[len(fibSlice)-2]
+	lenX := len(fibSlice)
+
+	nextFib := fibSlice[lenX-1] + fibSlice[lenX-2]
 	fibSlice = append(fibSlice, nextFib)
 
 	return fibSlice
