@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"example.com/functions/anonymous_func"
+	"example.com/functions/closure"
 )
 
 func main() {
@@ -31,6 +32,10 @@ func main() {
 
 	anonymousFuncResult := anonymous_func.AnonymousFunc()
 	fmt.Println(anonymousFuncResult)
+
+	closureFnc := closure.ClosureDemonstrationFunc()
+	closureFncResult := closureFnc(&sliceOfInts[3])
+	fmt.Println(closureFncResult) // 10 + 3 = 13
 }
 
 type transformType func(*int) int
