@@ -62,4 +62,11 @@ func main() {
 	// capacity of a slice basically follows this equation:
 	// cap(array[a:b]) = len(array) - a
 	// cap(namesSlice2) = len(names) - 0 = 7 - 0 = 7
+
+	b := [...]int{1, 2, 3, 4, 5} // b is an array of 5 integers
+	fmt.Println("dcl:", b)       // dcl: [1 2 3 4 5]
+
+	c := []int{10, 20, 30, 40, 50} // c is a slice of 5 integers
+	c = append(c, b[0:]...)        // here we are appending all elements of b to c, we cant directly append b to c because b is an array and c is a slice
+	fmt.Println("slc:", c)         // slc: [10 20 30 40 50 1 2 3 4 5]
 }
