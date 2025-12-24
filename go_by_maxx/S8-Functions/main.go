@@ -5,6 +5,7 @@ import (
 
 	"example.com/functions/anonymous_func"
 	"example.com/functions/closure"
+	"example.com/functions/recursion"
 )
 
 func main() {
@@ -36,6 +37,18 @@ func main() {
 	closureFnc := closure.ClosureDemonstrationFunc()
 	closureFncResult := closureFnc(&sliceOfInts[3])
 	fmt.Println(closureFncResult) // 10 + 3 = 13
+
+	k := 6
+	recursionResult := recursion.RecursiveFactorialFunc(&k)
+	fmt.Printf("Fact of %v is : %v\n", k, recursionResult) // 720
+
+	k = 0
+	recursionResult = recursion.RecursiveFactorialFunc(&k)
+	fmt.Printf("Fact of %v is : %v\n", k, recursionResult) // 1
+
+	n := 8
+	fibSlice := recursion.RecursiveFibonacciFunc(&n)
+	fmt.Printf("Fibonacci series of %v is : %v\n", n, fibSlice) // [0 1 1 2 3 5 8 13]
 }
 
 type transformType func(*int) int
