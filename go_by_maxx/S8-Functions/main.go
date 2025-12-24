@@ -6,6 +6,7 @@ import (
 	"example.com/functions/anonymous_func"
 	"example.com/functions/closure"
 	"example.com/functions/recursion"
+	"example.com/functions/variadic_func"
 )
 
 func main() {
@@ -49,6 +50,20 @@ func main() {
 	n := 8
 	fibSlice := recursion.RecursiveFibonacciFunc(&n)
 	fmt.Printf("Fibonacci series of %v is : %v\n", n, fibSlice) // [0 1 1 2 3 5 8 13]
+
+	kx := []float64{7.8, 2.1, 5.3, 9.7}
+	resVariadicFnSum1 := variadic_func.VariadicFuncSum1(&kx[0], &kx[1], &kx[2], &kx[3])
+	fmt.Printf("Result of Variadic Function1 Sum is : %v\n", resVariadicFnSum1) // 24.9
+
+	kx2 := []float64{7.8, 2.1, 5.3, 9.7}
+	resVariadicFnSum2 := variadic_func.VariadicFuncSum2(kx2...)
+	fmt.Printf("Result of Variadic Function2 Sum is : %v\n", resVariadicFnSum2) // 24.9
+
+	kj := 6
+	ki := []float64{7.8, 2.1, 5.3, 9.7}
+	resVariadicFnAvg := variadic_func.VariadicFuncAvg(&kj, &ki[0], &ki[1], &ki[2], &ki[3])
+	fmt.Printf("Result of Variadic Function Avg is : %.2f\n", resVariadicFnAvg) // 4.15
+
 }
 
 type transformType func(*int) int
