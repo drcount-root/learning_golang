@@ -52,4 +52,13 @@ func main() {
 	afterRemovalUpdatedPrices := append(updatedPrices[:1], updatedPrices[3:]...)
 	// by doing updatedPrices[3:]... we are unpacking all the values from updatedPrices[3:]
 	fmt.Printf("\nafterRemovalUpdatedPrices => %v\n", afterRemovalUpdatedPrices) // [1 7 8 10 12 15]
+
+	// array
+	// v := [2]float64{0, 3.2}
+	// v[3] = 4.5 // invalid argument: index 3 out of bounds [0:2]
+
+	// slice
+	// w := []float64{}
+	// println(len(w)) // 0
+	// w[1] = 3.14 // panic: runtime error: index out of range [1] with length 0
 }
