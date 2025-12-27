@@ -18,11 +18,25 @@ func main() {
 
 	<-doneChannel // wait for the data & ends the program
 
-	doneAddChannel := make(chan struct{})
+	doneAddChannel := make(chan bool)
 
 	go add(3, 7, doneAddChannel)
 
 	<-doneAddChannel
+
+	// better way to handle the above code using a slice of channels
+	doneChannels := make([]chan bool, 2)
+
+	doneChannels[0] = make(chan bool)
+	go slowGreet2("6", doneChannels[0])
+
+	doneChannels[1] = make(chan bool)
+	go add(8, 9, doneChannels[1])
+
+	for _, doneCh := range doneChannels {
+		<-doneCh
+	}
+
 }
 
 func greet(phrase string) {
@@ -42,10 +56,10 @@ func slowGreet2(phrase string, doneChan chan bool) {
 	doneChan <- true
 }
 
-func add(a, b int, doneAddChannel chan struct{}) {
+func add(a, b int, doneAddChannel chan bool) {
 	time.Sleep(5 * time.Second)
 	fmt.Printf("Sum after 5 seconds: %v\n", a+b)
-	doneAddChannel <- struct{}{}
+	doneAddChannel <- true
 }
 
 /*
