@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"time"
+
+	"example.com/concurrency_and_goroutines/combo"
 )
 
 func main() {
@@ -37,6 +39,8 @@ func main() {
 		<-doneCh
 	}
 
+	// tax calc part using goroutines
+	combo.Combo()
 }
 
 func greet(phrase string) {
@@ -71,6 +75,7 @@ func add(a, b int, doneAddChannel chan bool) {
 - Created using the `go` keyword.
 - Goroutines run concurrently, not necessarily in parallel.
 - The Go runtime schedules goroutines, not the OS.
+- Goroutines communicate using channels and share data. They don't return values.
 
 Example:
     go slowGreet2("hello", doneChan)
