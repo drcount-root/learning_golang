@@ -24,7 +24,7 @@ func getEvents(context *gin.Context) {
 
 	// gin.H is a shortcut for map[string]interface{}
 	context.JSON(http.StatusOK, gin.H{
-		"message": "Hello!",
+		"message": "Successfully fetched events",
 		"events":  events,
 	})
 }
@@ -33,9 +33,8 @@ func createEvent(context *gin.Context) {
 	var event models.Event
 	err := context.ShouldBindJSON(&event) // gin will scan the request body and put it in the event variable
 
-	fmt.Printf("Body : %v", event);
-	fmt.Printf("Err : %v", err);
-
+	fmt.Printf("Body : %v", event)
+	fmt.Printf("Err : %v", err)
 
 	if err != nil {
 		context.JSON(http.StatusBadRequest, gin.H{
@@ -46,6 +45,8 @@ func createEvent(context *gin.Context) {
 
 	event.Id = 1
 	event.UserId = 1
+
+	event.Save()
 
 	context.JSON(http.StatusCreated, gin.H{
 		"message": "Event created!",
