@@ -1,6 +1,7 @@
 package models
 
 import (
+	"fmt"
 	"time"
 
 	"example.com/rest_api_with_db/db"
@@ -16,15 +17,17 @@ type Event struct {
 	UserId      int
 }
 
-var events = []Event{}
+// var events = []Event{}
 
 func (e *Event) Save() error {
 	saveEventQuery := `
-		INSERT INTO events (name, description, location, dateTime, user_id) 
-		VALUES (?, ?, ?, ?, user_id)
+		INSERT INTO events (name, description, location, dateTime, userId) 
+		VALUES (?, ?, ?, ?, ?)
 	`
 
 	stmt, err := db.DB.Prepare(saveEventQuery)
+	
+	fmt.Printf("Err : %v", err)
 
 	if err != nil {
 		return err
@@ -72,4 +75,18 @@ func GetAllEvents() ([]Event, error) {
 	}
 
 	return events, nil
+}
+
+func GetEvent(id int64) (*Event, error) {
+	query := `SELECT * FROM events WHERE id = ?`
+	row := db.DB.QueryRow(query, id)
+
+	var event Event
+	err := row.Scan(&event.Id, &event.Name, &event.Description, &event.Location, &event.DateTime, &event.UserId)
+
+	if err != nil {
+		return nil, err
+	}
+
+	return &event, nil
 }

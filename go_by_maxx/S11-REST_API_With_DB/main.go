@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"strconv"
 
 	"example.com/rest_api_with_db/db"
 	"example.com/rest_api_with_db/models"
@@ -15,6 +16,7 @@ func main() {
 
 	server.GET("/events", getEvents)
 	server.POST("/events", createEvent)
+	server.GET("/events/:id", getEvent)
 
 	server.Run(":8080")
 }
@@ -67,6 +69,31 @@ func createEvent(context *gin.Context) {
 
 	context.JSON(http.StatusCreated, gin.H{
 		"message": "Event created!",
+		"event":   event,
+	})
+}
+
+func getEvent(context *gin.Context) {
+	id, err := strconv.ParseInt(context.Param("id"), 10, 64)
+
+	if err != nil {
+		context.JSON(http.StatusBadRequest, gin.H{
+			"message": "Could not parse id",
+		})
+		return
+	}
+
+	event, err := models.GetEvent(id)
+
+	if err != nil {
+		context.JSON(http.StatusInternalServerError, gin.H{
+			"message": "Could not fetch event. Try again later",
+		})
+		return
+	}
+
+	context.JSON(http.StatusOK, gin.H{
+		"message": "Successfully fetched event",
 		"event":   event,
 	})
 }
