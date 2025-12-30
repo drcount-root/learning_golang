@@ -2,8 +2,8 @@ POST http://localhost:8080/events
 Content-Type: application/json
 
 {
-    "Name": "Test Event",
-    "Description": "This is a test event created via API.",
-    "Location": "Test Location",
+    "Name": "Test Event 1",
+    "Description": "This is a test event created via API. 1",
+    "Location": "Test Location 1",
     "DateTime": "2024-07-01T10:00:00Z"
 }
