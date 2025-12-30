@@ -96,6 +96,16 @@ func UpdateEvent(context *gin.Context) {
 		return
 	}
 
+	// Check if event exists before updating
+	_, err = models.GetEvent(id)
+
+	if err != nil {
+		context.JSON(http.StatusNotFound, gin.H{
+			"message": "Event not found",
+		})
+		return
+	}
+
 	var updatedEvent models.Event
 
 	err = context.ShouldBindJSON(&updatedEvent)
