@@ -24,16 +24,6 @@ func SignUp(context *gin.Context) {
 		return
 	}
 
-	// if user already exists
-	_, err = models.GetUser(&user.Email, &user.Password)
-
-	if err == nil {
-		context.JSON(http.StatusBadRequest, gin.H{
-			"message": "User already exists",
-		})
-		return
-	}
-
 	err = user.Save()
 
 	if err != nil {
@@ -63,17 +53,16 @@ func Login(context *gin.Context) {
 		return
 	}
 
-	userData, err := models.GetUser(&user.Email, &user.Password)
+	err = user.ValidateCredentials()
 
 	if err != nil {
-		context.JSON(http.StatusInternalServerError, gin.H{
-			"message": "Could not login. Try again later",
+		context.JSON(http.StatusUnauthorized, gin.H{
+			"message": "Could not authenticate user.",
 		})
 		return
 	}
 
 	context.JSON(http.StatusOK, gin.H{
 		"message": "Successfully logged in",
-		"user":    userData,
 	})
 }
