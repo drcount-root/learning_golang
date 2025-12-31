@@ -64,3 +64,18 @@ func (u *User) ValidateCredentials() error {
 
 	return nil
 }
+
+// UserExists checks if a user with the given ID exists in the database
+func UserExists(userId int64) (bool, error) {
+	query := `SELECT id FROM users WHERE id = ?`
+	row := db.DB.QueryRow(query, userId)
+
+	var id int64
+	err := row.Scan(&id)
+
+	if err != nil {
+		return false, err
+	}
+
+	return true, nil
+}
