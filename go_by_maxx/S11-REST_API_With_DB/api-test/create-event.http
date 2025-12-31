@@ -1,9 +1,9 @@
 POST http://localhost:8080/events
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Impvbm55QGV4YW1wbGUuY29tIiwiZXhwIjoxNzY3MTg5Nzk0LCJ1c2VySWQiOjF9.VB-srl0QUxR2DxX9M5mgugU3wKANXjENFVZNqQjWlwY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvcmRhbkBleGFtcGxlLmNvbSIsImV4cCI6MTc2NzE5Mjc3NiwidXNlcklkIjoyfQ.3ipPwZf8IJ_6KD4sWyg9g-atLk6Kj_HjSCD6vRL8Wmo
 
 {
-    "Name": "Test Event 1",
+    "Name": "Test Event 1 by Jordan",
     "Description": "This is a test event created via API. 1",
     "Location": "Test Location 1",
     "DateTime": "2024-07-01T10:00:00Z"

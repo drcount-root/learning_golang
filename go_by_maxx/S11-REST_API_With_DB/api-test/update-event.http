@@ -1,10 +1,10 @@
-PUT http://localhost:8080/events/6
+PUT http://localhost:8080/events/8
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Impvbm55QGV4YW1wbGUuY29tIiwiZXhwIjoxNzY3MTg5Nzk0LCJ1c2VySWQiOjF9.VB-srl0QUxR2DxX9M5mgugU3wKANXjENFVZNqQjWlwY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvcmRhbkBleGFtcGxlLmNvbSIsImV4cCI6MTc2NzE5Mjc3NiwidXNlcklkIjoyfQ.3ipPwZf8IJ_6KD4sWyg9g-atLk6Kj_HjSCD6vRL8Wmo
 
 {
-    "Name": "updated 3rd event v3",
-    "Description": "updated description for 3rd event",
-    "Location": "updated location for 3rd event",
+    "Name": "updated 8rd event v2 Jordan",
+    "Description": "updated description for 8th event",
+    "Location": "updated location for 8th event",
     "DateTime": "2024-07-02T15:00:00Z"
 }
