@@ -167,7 +167,7 @@ func main() {
 	fmt.Printf("Time taken: %s\n", time.Since(startTime))
 }
 
-func fetchWeather(city string, ch chan<- string, wg *sync.WaitGroup) response {
+func fetchWeather(city string, ch chan<- string, wg *sync.WaitGroup) {
 	var data response
 
 	defer wg.Done()
@@ -177,19 +177,17 @@ func fetchWeather(city string, ch chan<- string, wg *sync.WaitGroup) response {
 
 	if err != nil {
 		fmt.Printf("Error fetching data")
-		return data
+		return
 	}
 
 	defer resp.Body.Close()
 
 	if err := json.NewDecoder(resp.Body).Decode(&data); err != nil {
 		fmt.Println(err)
-		return data
+		return
 	}
 
 	ch <- fmt.Sprintf("City: %s, Temperature in Celsius: %v\n", city, data.Current.TempC)
-
-	return data
 }
 
 // Time taken avg : 400ms to 200ms
