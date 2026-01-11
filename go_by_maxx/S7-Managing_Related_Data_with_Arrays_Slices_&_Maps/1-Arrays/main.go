@@ -70,3 +70,14 @@ func main() {
 	c = append(c, b[0:]...)        // here we are appending all elements of b to c, we cant directly append b to c because b is an array and c is a slice
 	fmt.Println("slc:", c)         // slc: [10 20 30 40 50 1 2 3 4 5]
 }
+
+/*
+	Limitations (By Design)
+
+	❌ No append
+	❌ No delete
+	❌ No resize
+	❌ No built-in helpers
+
+	Arrays exist mainly to back slices. Rarely used directly.
+*/

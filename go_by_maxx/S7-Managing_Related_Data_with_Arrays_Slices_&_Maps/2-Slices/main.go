@@ -62,3 +62,15 @@ func main() {
 	// println(len(w)) // 0
 	// w[1] = 3.14 // panic: runtime error: index out of range [1] with length 0
 }
+
+/*
+	Slice Summary (Mental Model)
+	Operation	Supported
+	Append	✅
+	Delete	✅ (manual)
+	Resize	✅
+	Copy	✅
+	Sort	✅
+	Compare	✅
+	Pass to function	Reference-like
+*/
