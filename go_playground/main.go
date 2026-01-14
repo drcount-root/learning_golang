@@ -40,4 +40,18 @@ func main() {
 	delete(m, "4") // only maps are having delete mothod
 
 	fmt.Println(m)
+
+	for i := 0 ; i <= 10; i++ {
+		switch {
+		case i > 3:
+			fmt.Println("Greater than 3")
+		case i == 3:
+			continue // skip when i == 3
+		case i < 3:
+			fmt.Println("Less than 3")
+		default:
+			fmt.Println("Default")
+		}
+	}
+
 }
