@@ -41,7 +41,7 @@ func main() {
 
 	fmt.Println(m)
 
-	for i := 0 ; i <= 10; i++ {
+	for i := 0; i <= 10; i++ {
 		switch {
 		case i > 3:
 			fmt.Println("Greater than 3")
@@ -52,6 +52,18 @@ func main() {
 		default:
 			fmt.Println("Default")
 		}
+	}
+
+	arrX := []int{1, 4, 5, 6, 8}
+
+	for i, v := range arrX {
+		fmt.Printf("Index: %v, Value: %v\n", i, v)
+	}
+
+	strX := "Hey there!"
+
+	for i, v := range strX {
+		fmt.Printf("Index: %v, Value: %c\n", i, v) // used %c to format the character
 	}
 
 }
